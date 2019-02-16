@@ -7,6 +7,12 @@ Quora is a platform that empowers people to learn from each other. On Quora, peo
 Approach:
 The data given by quora has question_id, question_text and a binary target (1 for insincere otherwise 0). There are 1.31 million such questions in train dataset and 376k questions to be classified as test data. 
 I have used following embedding: glove.840B.300d (Link - https://nlp.stanford.edu/projects/glove/) 
-Model selection:
 Since the training data has 1.31 million observations and target is binary, intuitavely neural network makes sense for such problem. In addition Neural network can outperform other ML models as the data is large enough for NN to learn and give better accuracy. 
 
+RNNs Vs. LSTMs & GRUs:
+Eventhough RNNs have feedback loop and retains memory, it can be difficult to train RNN which has long term temporal dependencies. This is because of the phenomena called vanishing gradient problem which, in nutshell, is decay of loss function exponentially with time. On the other hand LSTM has additional cells which retains information for longer period of time using set of gates. GRUs have simplified structure but don't have any additional memory cells. For question classification, long term temporal dependencies are essential. So I have opted for LSTM for this problem.
+
+Word Embeddings VS Bag of Words:
+The main idea behind using word embeddings is to maintain semantic relationships which means that words that have similar meaning will be closer. Another advantage of Embeddings is dimention reduction of vectorized space. The curse of dimentionality can induce high amount of redundant information hence useful information can be lost essentially lowering performance.
+
+Results: The LSTM performed as per my expectations as I got accuracy of 95.77% on validation set.
